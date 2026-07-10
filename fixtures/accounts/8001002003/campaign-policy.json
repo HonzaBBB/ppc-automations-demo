@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "kind": "script",
+      "campaignLabel": "LeadFlow_Form_Leads",
+      "policyTopic": "Limited serving",
+      "detail": "Campaign serving limited due to policy review"
+    },
+    {
+      "kind": "app",
+      "campaignLabel": "LeadFlow_PMax_Assets [PMAX]",
+      "policyTopic": "Limited ad serving",
+      "detail": "Asset group meets policy with limitations — healthcare vertical"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "lookbacks": {
+    "7": {
+      "campaigns": [
+        {
+          "campaignId": "20001",
+          "campaignName": "Servixa_Display_Remarketing",
+          "channelType": "DISPLAY",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 150,
+          "spendCzk": 120,
+          "clicks": 0,
+          "impressions": 0,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 0
+        },
+        {
+          "campaignId": "20002",
+          "campaignName": "Servixa_Lead_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": ["BIDDING_STRATEGY_CONSTRAINED"],
+          "budgetCzk": 350,
+          "spendCzk": 680,
+          "clicks": 0,
+          "impressions": 2400,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 6
+        },
+        {
+          "campaignId": "20003",
+          "campaignName": "Servixa_Brand_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 200,
+          "spendCzk": 420,
+          "clicks": 95,
+          "impressions": 3100,
+          "conversions": 8,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": 53,
+          "budgetLostImpressionShare": 18
+        },
+        {
+          "campaignId": "20004",
+          "campaignName": "Servixa_Services_Generic",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 180,
+          "spendCzk": 380,
+          "clicks": 72,
+          "impressions": 2800,
+          "conversions": 5,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": 76,
+          "budgetLostImpressionShare": 3
+        }
+      ]
+    },
+    "14": {
+      "campaigns": [
+        {
+          "campaignId": "20001",
+          "campaignName": "Servixa_Display_Remarketing",
+          "channelType": "DISPLAY",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 150,
+          "spendCzk": 240,
+          "clicks": 0,
+          "impressions": 0,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 0
+        },
+        {
+          "campaignId": "20002",
+          "campaignName": "Servixa_Lead_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": ["BIDDING_STRATEGY_CONSTRAINED"],
+          "budgetCzk": 350,
+          "spendCzk": 1320,
+          "clicks": 0,
+          "impressions": 4800,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 6
+        },
+        {
+          "campaignId": "20003",
+          "campaignName": "Servixa_Brand_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 200,
+          "spendCzk": 860,
+          "clicks": 190,
+          "impressions": 6200,
+          "conversions": 16,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": 54,
+          "budgetLostImpressionShare": 18
+        },
+        {
+          "campaignId": "20004",
+          "campaignName": "Servixa_Services_Generic",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 180,
+          "spendCzk": 780,
+          "clicks": 148,
+          "impressions": 5600,
+          "conversions": 11,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": 71,
+          "budgetLostImpressionShare": 3
+        }
+      ]
+    },
+    "30": {
+      "campaigns": [
+        {
+          "campaignId": "20002",
+          "campaignName": "Servixa_Lead_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 350,
+          "spendCzk": 3200,
+          "clicks": 520,
+          "impressions": 18000,
+          "conversions": 18,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": 178,
+          "budgetLostImpressionShare": 5
+        }
+      ]
+    }
+  }
+}

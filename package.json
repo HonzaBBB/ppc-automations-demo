@@ -1,0 +1,14 @@
+{
+  "name": "ppc-automation-demo",
+  "version": "0.1.0",
+  "description": "Public demo of daily Google Ads account monitoring — mock data only",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "demo": "node src/runner.js",
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

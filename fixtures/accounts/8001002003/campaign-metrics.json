@@ -1,0 +1,101 @@
+{
+  "lookbacks": {
+    "7": {
+      "campaigns": [
+        {
+          "campaignId": "30001",
+          "campaignName": "LeadFlow_Form_Leads",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 450,
+          "spendCzk": 2400,
+          "clicks": 420,
+          "impressions": 9800,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 5
+        },
+        {
+          "campaignId": "30002",
+          "campaignName": "LeadFlow_PMax_Assets",
+          "channelType": "PERFORMANCE_MAX",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 500,
+          "spendCzk": 1400,
+          "clicks": 310,
+          "impressions": 22000,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 2
+        }
+      ]
+    },
+    "14": {
+      "campaigns": [
+        {
+          "campaignId": "30001",
+          "campaignName": "LeadFlow_Form_Leads",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 450,
+          "spendCzk": 4200,
+          "clicks": 780,
+          "impressions": 18200,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 5
+        },
+        {
+          "campaignId": "30002",
+          "campaignName": "LeadFlow_PMax_Assets",
+          "channelType": "PERFORMANCE_MAX",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 500,
+          "spendCzk": 2600,
+          "clicks": 580,
+          "impressions": 41000,
+          "conversions": 0,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 2
+        }
+      ]
+    },
+    "30": {
+      "campaigns": [
+        {
+          "campaignId": "30001",
+          "campaignName": "LeadFlow_Form_Leads",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 450,
+          "spendCzk": 7200,
+          "clicks": 1320,
+          "impressions": 31000,
+          "conversions": 42,
+          "conversionValueCzk": 0,
+          "roas": 0,
+          "pnoPercent": null,
+          "cpaCzk": 171,
+          "budgetLostImpressionShare": 4
+        }
+      ]
+    }
+  }
+}

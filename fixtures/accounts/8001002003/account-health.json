@@ -1,0 +1,16 @@
+{
+  "customerId": "8001002003",
+  "accountName": "LeadFlow Demo — lead gen",
+  "status": "ENABLED",
+  "enabledCampaignCount": 2,
+  "pausedCampaignCount": 1,
+  "payPerConversionFailureReasons": ["OTHER"],
+  "identityVerification": {
+    "kind": "unavailable",
+    "reason": "NOT_MONTHLY_INVOICING"
+  },
+  "billing": {
+    "setups": [],
+    "queryError": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "accounts": [
+    {
+      "customerId": "8001002001",
+      "label": "Modora Home — e-shop",
+      "profile": "eshop"
+    },
+    {
+      "customerId": "8001002002",
+      "label": "Servixa Pro — služby",
+      "profile": "leadgen"
+    },
+    {
+      "customerId": "8001002003",
+      "label": "LeadFlow Demo — lead gen",
+      "profile": "leadgen"
+    }
+  ]
+}

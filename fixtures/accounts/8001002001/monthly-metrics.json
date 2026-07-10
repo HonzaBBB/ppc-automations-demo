@@ -1,0 +1,30 @@
+{
+  "periods": [
+    {
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-30",
+      "totals": {
+        "spendCzk": 42000,
+        "conversions": 380,
+        "clicks": 12400,
+        "conversionValueCzk": 168000,
+        "roas": 400,
+        "pnoPercent": 25.0,
+        "cpaCzk": null
+      }
+    },
+    {
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-31",
+      "totals": {
+        "spendCzk": 38000,
+        "conversions": 350,
+        "clicks": 11800,
+        "conversionValueCzk": 175000,
+        "roas": 461,
+        "pnoPercent": 21.7,
+        "cpaCzk": null
+      }
+    }
+  ]
+}

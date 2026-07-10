@@ -1,0 +1,152 @@
+{
+  "lookbacks": {
+    "7": {
+      "campaigns": [
+        {
+          "campaignId": "10001",
+          "campaignName": "Modora_PMax_Shopping",
+          "channelType": "PERFORMANCE_MAX",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 800,
+          "spendCzk": 8200,
+          "clicks": 2100,
+          "impressions": 185000,
+          "conversions": 62,
+          "conversionValueCzk": 12400,
+          "roas": 151,
+          "pnoPercent": 66.1,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 4
+        },
+        {
+          "campaignId": "10002",
+          "campaignName": "Modora_Brand_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": ["BUDGET_CONSTRAINED"],
+          "budgetCzk": 400,
+          "spendCzk": 2800,
+          "clicks": 890,
+          "impressions": 22000,
+          "conversions": 28,
+          "conversionValueCzk": 9800,
+          "roas": 350,
+          "pnoPercent": 28.6,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 14
+        },
+        {
+          "campaignId": "10003",
+          "campaignName": "Modora_Generic_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 300,
+          "spendCzk": 1000,
+          "clicks": 310,
+          "impressions": 8500,
+          "conversions": 9,
+          "conversionValueCzk": 3200,
+          "roas": 320,
+          "pnoPercent": 31.3,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 2
+        }
+      ]
+    },
+    "14": {
+      "campaigns": [
+        {
+          "campaignId": "10001",
+          "campaignName": "Modora_PMax_Shopping",
+          "channelType": "PERFORMANCE_MAX",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 800,
+          "spendCzk": 14800,
+          "clicks": 3800,
+          "impressions": 340000,
+          "conversions": 112,
+          "conversionValueCzk": 23600,
+          "roas": 159,
+          "pnoPercent": 62.7,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 4
+        },
+        {
+          "campaignId": "10002",
+          "campaignName": "Modora_Brand_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": ["BUDGET_CONSTRAINED"],
+          "budgetCzk": 400,
+          "spendCzk": 5200,
+          "clicks": 1650,
+          "impressions": 41000,
+          "conversions": 52,
+          "conversionValueCzk": 18200,
+          "roas": 350,
+          "pnoPercent": 28.6,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 14
+        },
+        {
+          "campaignId": "10003",
+          "campaignName": "Modora_Generic_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 300,
+          "spendCzk": 2000,
+          "clicks": 620,
+          "impressions": 16000,
+          "conversions": 18,
+          "conversionValueCzk": 6400,
+          "roas": 320,
+          "pnoPercent": 31.3,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 2
+        }
+      ]
+    },
+    "30": {
+      "campaigns": [
+        {
+          "campaignId": "10001",
+          "campaignName": "Modora_PMax_Shopping",
+          "channelType": "PERFORMANCE_MAX",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 800,
+          "spendCzk": 32000,
+          "clicks": 8200,
+          "impressions": 720000,
+          "conversions": 240,
+          "conversionValueCzk": 48000,
+          "roas": 150,
+          "pnoPercent": 66.7,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 4
+        },
+        {
+          "campaignId": "10002",
+          "campaignName": "Modora_Brand_Search",
+          "channelType": "SEARCH",
+          "status": "ENABLED",
+          "statusReasons": [],
+          "budgetCzk": 400,
+          "spendCzk": 8000,
+          "clicks": 2500,
+          "impressions": 62000,
+          "conversions": 80,
+          "conversionValueCzk": 32000,
+          "roas": 400,
+          "pnoPercent": 25.0,
+          "cpaCzk": null,
+          "budgetLostImpressionShare": 8
+        }
+      ]
+    }
+  }
+}

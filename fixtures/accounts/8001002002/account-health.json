@@ -1,0 +1,16 @@
+{
+  "customerId": "8001002002",
+  "accountName": "Servixa Pro — služby",
+  "status": "ENABLED",
+  "enabledCampaignCount": 4,
+  "pausedCampaignCount": 0,
+  "payPerConversionFailureReasons": [],
+  "identityVerification": {
+    "kind": "data",
+    "programStatus": "SUCCESS"
+  },
+  "billing": {
+    "setups": [{ "status": "APPROVED" }],
+    "queryError": null
+  }
+}

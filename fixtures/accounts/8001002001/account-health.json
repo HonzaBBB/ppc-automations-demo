@@ -1,0 +1,16 @@
+{
+  "customerId": "8001002001",
+  "accountName": "Modora Home — e-shop",
+  "status": "ENABLED",
+  "enabledCampaignCount": 3,
+  "pausedCampaignCount": 0,
+  "payPerConversionFailureReasons": [],
+  "identityVerification": {
+    "kind": "data",
+    "programStatus": "SUCCESS"
+  },
+  "billing": {
+    "setups": [{ "status": "APPROVED" }],
+    "queryError": null
+  }
+}
