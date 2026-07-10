@@ -34,6 +34,10 @@ function resolveFixturesBaseUrl(fixturesBaseUrl) {
     return fixturesBaseUrl.endsWith('/') ? fixturesBaseUrl : `${fixturesBaseUrl}/`;
   }
 
+  if (typeof document !== 'undefined' && document.baseURI) {
+    return new URL('fixtures/', document.baseURI).href;
+  }
+
   if (typeof globalThis.location?.href === 'string') {
     return new URL('fixtures/', globalThis.location.href).href;
   }

@@ -4,13 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PPC Automation — Demo</title>
+    <script>
+      (function () {
+        var path = window.location.pathname || '/';
+        var base = '/';
+        if (window.location.hostname.endsWith('github.io')) {
+          var repo = path.split('/').filter(Boolean)[0];
+          if (repo) base = '/' + repo + '/';
+        } else {
+          base = path.replace(/[^/]*$/, '') || '/';
+        }
+        var baseEl = document.createElement('base');
+        baseEl.id = 'site-base';
+        baseEl.href = base;
+        document.head.appendChild(baseEl);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./web/styles.css" />
+    <link rel="stylesheet" href="web/styles.css?v=3" />
   </head>
   <body>
     <div class="app">
@@ -21,15 +37,30 @@
           <span class="top-bar-muted">Demo · mock data · read-only</span>
         </div>
         <div class="top-bar-right">
+          <button id="refresh-btn" type="button" class="top-bar-refresh">Obnovit běh</button>
           <div id="status-pill" class="status-pill ok">
             <span class="dot"></span>
-            <span id="status" class="status-text">Připraveno ke spuštění</span>
+            <span id="status" class="status-text">Připraveno</span>
           </div>
         </div>
       </header>
 
+      <nav class="main-nav" aria-label="Navigace (demo)">
+        <button type="button" class="nav-disabled" disabled>Accounts</button>
+        <button type="button" class="nav-disabled" disabled>Campaigns</button>
+        <button type="button" class="nav-active" disabled>
+          Alerts
+          <span id="alert-badge" class="nav-badge hidden">0</span>
+        </button>
+        <button type="button" class="nav-disabled" disabled>Negatives</button>
+        <button type="button" class="nav-disabled" disabled>History</button>
+        <button type="button" class="nav-disabled" disabled>Reporting</button>
+        <button type="button" class="nav-disabled" disabled>Settings</button>
+      </nav>
+
       <div class="toolbar toolbar-global">
         <button id="run-demo" type="button" class="run-btn">Spustit denní běh</button>
+        <span class="toolbar-note">13 kontrol · fiktivní účty · bez API</span>
         <a class="toolbar-link" href="https://honzabrzak.cz/jak-pracuji" target="_blank" rel="noopener">
           Jak pracuji
         </a>
@@ -52,6 +83,6 @@
       </p>
     </div>
 
-    <script type="module" src="./web/app.js"></script>
+    <script type="module" src="web/app.js?v=3"></script>
   </body>
 </html>

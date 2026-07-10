@@ -1,8 +1,11 @@
 import { runAllChecks } from '../src/checks/index.js';
 import { BrowserDataSource } from '../src/data-source/BrowserDataSource.js';
 import { buildMonthlyReportsOverview } from '../src/reporting/build-monthly-report.js';
+import { getFixturesBaseUrl } from './site-base.js';
 
 const runButton = document.getElementById('run-demo');
+const refreshButton = document.getElementById('refresh-btn');
+const alertBadge = document.getElementById('alert-badge');
 const statusEl = document.getElementById('status');
 const statusPill = document.getElementById('status-pill');
 const summaryEl = document.getElementById('summary');
@@ -207,13 +210,13 @@ function renderReport(issues, monthlyReports) {
 
 async function runDemoInBrowser() {
   runButton.disabled = true;
+  if (refreshButton) refreshButton.disabled = true;
   setStatus('warn', 'Načítám mock data a spouštím kontroly…');
   reportEl.classList.add('hidden');
   summaryEl.classList.add('hidden');
 
   try {
-    const fixturesBaseUrl = new URL('../fixtures/', import.meta.url).href;
-    const dataSource = new BrowserDataSource(fixturesBaseUrl);
+    const dataSource = new BrowserDataSource(getFixturesBaseUrl());
     const meta = await dataSource.getMeta();
     const referenceDate = new Date(`${meta.simulatedRunDate}T12:00:00`);
     const accounts = await dataSource.getAccounts();
@@ -225,14 +228,32 @@ async function runDemoInBrowser() {
 
     renderKpis(issues, meta);
     renderReport(issues, monthlyReports);
+
+    const actionRequired = issues.filter(
+      (issue) => issue.severity === 'CRITICAL' || issue.severity === 'HIGH'
+    ).length;
+    if (actionRequired > 0) {
+      alertBadge.textContent = String(actionRequired);
+      alertBadge.classList.remove('hidden');
+    } else {
+      alertBadge.classList.add('hidden');
+    }
+
     setStatus('ok', `Běh dokončen · ${meta.simulatedRunDate} · ${issues.length} problémů`);
   } catch (error) {
     setStatus('err', `Chyba: ${/** @type {Error} */ (error).message}`);
   } finally {
     runButton.disabled = false;
+    if (refreshButton) refreshButton.disabled = false;
   }
 }
 
 runButton.addEventListener('click', () => {
   void runDemoInBrowser();
 });
+
+if (refreshButton) {
+  refreshButton.addEventListener('click', () => {
+    void runDemoInBrowser();
+  });
+}
