@@ -57,7 +57,8 @@ async function runDemoInBrowser() {
   summaryEl.classList.add('hidden');
 
   try {
-    const dataSource = new BrowserDataSource();
+    const fixturesBaseUrl = new URL('../fixtures/', import.meta.url).href;
+    const dataSource = new BrowserDataSource(fixturesBaseUrl);
     const meta = await dataSource.getMeta();
     const referenceDate = new Date(`${meta.simulatedRunDate}T12:00:00`);
     const accounts = await dataSource.getAccounts();

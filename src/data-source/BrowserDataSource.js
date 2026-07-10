@@ -26,6 +26,22 @@ async function fetchJsonFixture(baseUrl, relativePath) {
 }
 
 /**
+ * Resolve fixtures base URL for browser (repo root /fixtures/) or Node fallback.
+ * @param {string | undefined} fixturesBaseUrl
+ */
+function resolveFixturesBaseUrl(fixturesBaseUrl) {
+  if (fixturesBaseUrl) {
+    return fixturesBaseUrl.endsWith('/') ? fixturesBaseUrl : `${fixturesBaseUrl}/`;
+  }
+
+  if (typeof globalThis.location?.href === 'string') {
+    return new URL('fixtures/', globalThis.location.href).href;
+  }
+
+  return new URL('../../fixtures/', import.meta.url).href;
+}
+
+/**
  * Browser demo data source — fetches JSON fixtures over HTTP (GitHub Pages).
  */
 export class BrowserDataSource extends FixtureDataSource {
@@ -33,7 +49,7 @@ export class BrowserDataSource extends FixtureDataSource {
    * @param {string} [fixturesBaseUrl] e.g. https://user.github.io/repo/fixtures/
    */
   constructor(fixturesBaseUrl) {
-    const baseUrl = fixturesBaseUrl ?? new URL('../fixtures/', import.meta.url).href;
+    const baseUrl = resolveFixturesBaseUrl(fixturesBaseUrl);
     super((relativePath) => fetchJsonFixture(baseUrl, relativePath));
   }
 }
