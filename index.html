@@ -3,41 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PPC Automation Demo</title>
+    <title>PPC Automation — Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./web/styles.css" />
   </head>
   <body>
-    <header class="header">
-      <div class="container">
-        <p class="eyebrow">Transparentní monitoring Google Ads</p>
-        <h1>PPC Automation Demo</h1>
-        <p class="lead">
-          Simulace denního běhu nad fiktivními účty — stejná logika kontrol jako v produkci,
-          bez API klíčů a bez reálných dat.
-        </p>
-        <div class="actions">
-          <button id="run-demo" type="button" class="btn-primary">Spustit demo</button>
-          <a class="btn-secondary" href="https://honzabrzak.cz/jak-pracuji" target="_blank" rel="noopener">
-            Jak pracuji
-          </a>
-          <a class="btn-secondary" href="https://github.com/HonzaBBB/ppc-automations-demo" target="_blank" rel="noopener">
-            GitHub repo
-          </a>
+    <div class="app">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="brand">PPC Automation</span>
+          <span class="top-bar-sep">|</span>
+          <span class="top-bar-muted">Demo · mock data · read-only</span>
         </div>
-        <p id="status" class="status" aria-live="polite"></p>
+        <div class="top-bar-right">
+          <div id="status-pill" class="status-pill ok">
+            <span class="dot"></span>
+            <span id="status" class="status-text">Připraveno ke spuštění</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="toolbar toolbar-global">
+        <button id="run-demo" type="button" class="run-btn">Spustit denní běh</button>
+        <a class="toolbar-link" href="https://honzabrzak.cz/jak-pracuji" target="_blank" rel="noopener">
+          Jak pracuji
+        </a>
+        <a
+          class="toolbar-link"
+          href="https://github.com/HonzaBBB/ppc-automations-demo"
+          target="_blank"
+          rel="noopener"
+        >
+          GitHub
+        </a>
       </div>
-    </header>
 
-    <main class="container">
-      <section id="summary" class="summary hidden" aria-label="Shrnutí"></section>
-      <article id="report" class="report hidden" aria-label="Report"></article>
-    </main>
+      <section id="summary" class="kpis hidden" aria-label="Shrnutí"></section>
 
-    <footer class="footer container">
-      <p>
-        Demo verze — know-how je v prahových hodnotách per klient a každodenní práci s výstupy.
+      <main id="report" class="report-layout hidden" aria-label="Výstup dema"></main>
+
+      <p class="app-footer">
+        Demo verze — prahové hodnoty per klient a workflow s výstupy nejsou součástí repozitáře.
       </p>
-    </footer>
+    </div>
 
     <script type="module" src="./web/app.js"></script>
   </body>

@@ -1,58 +1,213 @@
 import { runAllChecks } from '../src/checks/index.js';
 import { BrowserDataSource } from '../src/data-source/BrowserDataSource.js';
-import { formatDailyReportMarkdown } from '../src/report/format-daily-report.js';
 import { buildMonthlyReportsOverview } from '../src/reporting/build-monthly-report.js';
 
 const runButton = document.getElementById('run-demo');
 const statusEl = document.getElementById('status');
+const statusPill = document.getElementById('status-pill');
 const summaryEl = document.getElementById('summary');
 const reportEl = document.getElementById('report');
 
 /**
- * Minimal markdown → HTML for demo report (no dependencies).
- * @param {string} markdown
+ * @param {string} text
  */
-function markdownToHtml(markdown) {
-  const escaped = markdown
+function escapeHtml(text) {
+  return String(text)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 
-  return escaped
-    .replace(/^### (CRITICAL|HIGH|MEDIUM|INFO)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.*)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.*)$/gm, '<h1>$1</h1>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/^---$/gm, '<hr>')
-    .replace(/^_(.+?)_$/gm, '<p><em>$1</em></p>')
-    .replace(/^- \*\*(.*?)\*\* · `(.*?)`$/gm, '<div class="issue-block"><strong>$1</strong> · <code>$2</code>')
-    .replace(/^  - (.*)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/g, (block) => `<ul>${block}</ul>`)
-    .replace(/\n\n/g, '</div><p>')
-    .replace(/^([^<\n].*)$/gm, (line) => (line.startsWith('<') ? line : `<p>${line}</p>`));
+/**
+ * @param {'ok' | 'warn' | 'err'} state
+ * @param {string} message
+ */
+function setStatus(state, message) {
+  statusPill.className = `status-pill ${state}`;
+  statusEl.textContent = message;
+}
+
+/**
+ * @param {import('../src/data-source/types.js').IssueSeverity} severity
+ */
+function severityClass(severity) {
+  return `severity-${severity.toLowerCase()}`;
+}
+
+/**
+ * @param {import('../src/data-source/types.js').AnomalyIssue[]} issues
+ * @param {{ simulatedRunDate: string, reportMonth: string }} meta
+ */
+function renderKpis(issues, meta) {
+  const critical = issues.filter((issue) => issue.severity === 'CRITICAL').length;
+  const high = issues.filter((issue) => issue.severity === 'HIGH').length;
+  const accounts = new Set(issues.map((issue) => issue.customerId)).size;
+
+  summaryEl.innerHTML = `
+    <div class="kpi">
+      <span class="kpi-label">Simulovaný běh</span>
+      <span class="kpi-value">${escapeHtml(meta.simulatedRunDate)}</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Problémů</span>
+      <span class="kpi-value">${issues.length}</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Critical</span>
+      <span class="kpi-value">${critical}</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">High</span>
+      <span class="kpi-value">${high}</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Mock účtů</span>
+      <span class="kpi-value">${accounts}</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Reporting</span>
+      <span class="kpi-value">${escapeHtml(meta.reportMonth)}</span>
+    </div>
+  `;
+  summaryEl.classList.remove('hidden');
 }
 
 /**
  * @param {import('../src/data-source/types.js').AnomalyIssue[]} issues
  */
-function renderSummary(issues) {
-  const accounts = new Set(issues.map((issue) => issue.customerId));
-  const critical = issues.filter((issue) => issue.severity === 'CRITICAL').length;
-  const high = issues.filter((issue) => issue.severity === 'HIGH').length;
+function renderIssueTable(issues) {
+  if (issues.length === 0) {
+    return '<p class="section-empty">Žádné problémy.</p>';
+  }
 
-  summaryEl.innerHTML = `
-    <div class="summary-card"><strong>${issues.length}</strong> problémů celkem</div>
-    <div class="summary-card"><strong>${accounts.size}</strong> mock účtů</div>
-    <div class="summary-card"><strong>${critical}</strong> critical</div>
-    <div class="summary-card"><strong>${high}</strong> high</div>
+  const rows = issues
+    .map(
+      (issue) => `
+        <tr>
+          <td><span class="severity-pill ${severityClass(issue.severity)}">${issue.severity}</span></td>
+          <td class="name">${escapeHtml(issue.account)}</td>
+          <td class="name"><code>${escapeHtml(issue.campaign)}</code></td>
+          <td>${escapeHtml(issue.issue)}</td>
+          <td class="detail-cell">${escapeHtml(issue.detail)}</td>
+        </tr>
+      `
+    )
+    .join('');
+
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Severity</th>
+            <th>Účet</th>
+            <th>Kampaň</th>
+            <th>Issue</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
   `;
-  summaryEl.classList.remove('hidden');
+}
+
+/**
+ * @param {string} title
+ * @param {string} description
+ * @param {import('../src/data-source/types.js').AnomalyIssue[]} issues
+ * @param {{ critical?: boolean }} [options]
+ */
+function renderIssueSection(title, description, issues, options = {}) {
+  return `
+    <section class="alerts-section">
+      <h2 class="section-title ${options.critical ? 'section-critical' : ''}">
+        ${escapeHtml(title)}
+        <span class="section-count">${issues.length}</span>
+      </h2>
+      <p class="section-desc">${escapeHtml(description)}</p>
+      ${renderIssueTable(issues)}
+    </section>
+  `;
+}
+
+/**
+ * @param {import('../src/reporting/types.js').MonthlyReport[]} reports
+ */
+function renderMonthlySection(reports) {
+  const rows = reports
+    .map(
+      (report) => `
+        <tr>
+          <td class="report-status">${report.statusEmoji}</td>
+          <td class="name">${escapeHtml(report.accountName)}</td>
+          <td>${escapeHtml(report.profile)}</td>
+          <td>${escapeHtml(report.statusLabel)}</td>
+          <td>${Math.round(report.current.totals.spendCzk).toLocaleString('cs-CZ')} Kč</td>
+          <td>${report.current.totals.conversions}</td>
+          <td class="report-summary-cell">${escapeHtml(report.summary)}</td>
+        </tr>
+      `
+    )
+    .join('');
+
+  return `
+    <section class="config-section">
+      <h2>Měsíční reporting</h2>
+      <p class="section-hint">Mock přehled za ${escapeHtml(reports[0]?.month ?? '—')} · srovnání s předchozím měsícem</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Účet</th>
+              <th>Profil</th>
+              <th>Status</th>
+              <th>Spend</th>
+              <th>Konverze</th>
+              <th>Shrnutí</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+/**
+ * @param {import('../src/data-source/types.js').AnomalyIssue[]} issues
+ * @param {import('../src/reporting/types.js').MonthlyReport[]} monthlyReports
+ */
+function renderReport(issues, monthlyReports) {
+  const actionRequired = issues.filter(
+    (issue) => issue.severity === 'CRITICAL' || issue.severity === 'HIGH'
+  );
+  const lowerPriority = issues.filter(
+    (issue) => issue.severity === 'MEDIUM' || issue.severity === 'INFO'
+  );
+
+  reportEl.innerHTML = `
+    ${renderIssueSection(
+      'Vyžaduje pozornost',
+      'CRITICAL a HIGH — stejná logika jako záložka Alerts v produkci.',
+      actionRequired,
+      { critical: true }
+    )}
+    ${renderIssueSection(
+      'Nižší priorita',
+      'MEDIUM a INFO — informativní nálezy, bez okamžité akce.',
+      lowerPriority
+    )}
+    ${renderMonthlySection(monthlyReports)}
+  `;
+  reportEl.classList.remove('hidden');
 }
 
 async function runDemoInBrowser() {
   runButton.disabled = true;
-  statusEl.textContent = 'Načítám mock data a spouštím kontroly…';
+  setStatus('warn', 'Načítám mock data a spouštím kontroly…');
   reportEl.classList.add('hidden');
   summaryEl.classList.add('hidden');
 
@@ -68,13 +223,11 @@ async function runDemoInBrowser() {
       buildMonthlyReportsOverview(accounts, meta.reportMonth, dataSource),
     ]);
 
-    const markdown = formatDailyReportMarkdown(issues, monthlyReports, meta);
-    renderSummary(issues);
-    reportEl.innerHTML = markdownToHtml(markdown);
-    reportEl.classList.remove('hidden');
-    statusEl.textContent = `Hotovo — simulovaný běh ${meta.simulatedRunDate}, reporting za ${meta.reportMonth}.`;
+    renderKpis(issues, meta);
+    renderReport(issues, monthlyReports);
+    setStatus('ok', `Běh dokončen · ${meta.simulatedRunDate} · ${issues.length} problémů`);
   } catch (error) {
-    statusEl.textContent = `Chyba: ${/** @type {Error} */ (error).message}`;
+    setStatus('err', `Chyba: ${/** @type {Error} */ (error).message}`);
   } finally {
     runButton.disabled = false;
   }
