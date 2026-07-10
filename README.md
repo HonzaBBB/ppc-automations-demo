@@ -18,7 +18,7 @@ Více o přístupu ke správě účtů: [honzabrzak.cz/jak-pracuji](https://honz
 
 ## Spustit online (pro klienty)
 
-**Live demo:** [honzabbbb.github.io/ppc-automations-demo](https://honzabbbb.github.io/ppc-automations-demo)
+**Live demo:** [honzabbb.github.io/ppc-automations-demo](https://honzabbb.github.io/ppc-automations-demo)
 
 Otevři odkaz → klikni **Spustit demo** → uvidíš report v prohlížeči. Žádná instalace, žádné API klíče.
 
